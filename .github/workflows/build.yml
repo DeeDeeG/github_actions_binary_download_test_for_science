@@ -1,0 +1,23 @@
+name: Build and Upload a Binary
+
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Create a binary
+      run: |
+        mkdir ./binaries
+        touch ./binaries/myBinary.txt
+
+    - name: Upload Binary Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Binaries
+        path: ./binaries/*
